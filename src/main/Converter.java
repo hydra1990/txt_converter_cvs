@@ -5,19 +5,22 @@ import domain.Auditoria;
 import javax.swing.*;
 import javax.swing.filechooser.FileFilter;
 import javax.swing.filechooser.FileNameExtensionFilter;
-import java.io.File;
-import java.io.FileNotFoundException;
+import java.io.*;
 import java.math.BigDecimal;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 public class Converter {
+    private static final String CSV_SEPARATOR = ",";
     List<Auditoria> auditorias = new ArrayList<>();
+    File auditTxt;
 
     public void convert() {
-        File auditTxt = getAuditTxt();
+        auditTxt = getAuditTxt();
         addAuditorias(auditTxt);
+        exportToCsv();
     }
 
     private File getAuditTxt() {
@@ -63,5 +66,36 @@ public class Converter {
         auditoria.setSaldoFinal(new BigDecimal(information[9]));
 
         auditorias.add(auditoria);
+    }
+
+    private void exportToCsv() {
+        try {
+            try (BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(auditTxt.getAbsolutePath() + "audit.csv"), StandardCharsets.UTF_8))) {
+                for (Auditoria auditoria : auditorias) {
+                    String oneLine = auditoria.getCuenta() +
+                            CSV_SEPARATOR +
+                            auditoria.getDescripcion() +
+                            CSV_SEPARATOR +
+                            auditoria.getEntidad() +
+                            CSV_SEPARATOR +
+                            auditoria.getAct() +
+                            CSV_SEPARATOR +
+                            auditoria.getSaldoApertura() +
+                            CSV_SEPARATOR +
+                            auditoria.getSaldoInicial() +
+                            CSV_SEPARATOR +
+                            auditoria.getDebito() +
+                            CSV_SEPARATOR +
+                            auditoria.getCredito() +
+                            CSV_SEPARATOR +
+                            auditoria.getSaldoFinal();
+                    bufferedWriter.write(oneLine);
+                    bufferedWriter.newLine();
+                }
+                bufferedWriter.flush();
+            }
+        } catch (IOException e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }
     }
 }
