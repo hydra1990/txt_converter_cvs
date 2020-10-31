@@ -38,6 +38,9 @@ public class Main {
 
     private static void addAuditorias(File auditTxt) {
         try (Scanner myReader = new Scanner(auditTxt)) {
+            if (myReader.hasNextLine()) {
+                myReader.nextLine();
+            }
             while (myReader.hasNextLine()) {
                 String dataLine = myReader.nextLine();
                 transformAuditoria(dataLine);
