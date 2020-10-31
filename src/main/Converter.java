@@ -15,10 +15,6 @@ import java.util.Scanner;
 public class Converter {
     List<Auditoria> auditorias = new ArrayList<>();
 
-    public Converter() {
-
-    }
-
     public void convert() {
         File auditTxt = getAuditTxt();
         addAuditorias(auditTxt);
@@ -65,5 +61,7 @@ public class Converter {
         auditoria.setDebito(new BigDecimal(information[7]));
         auditoria.setCredito(new BigDecimal(information[8]));
         auditoria.setSaldoFinal(new BigDecimal(information[9]));
+
+        auditorias.add(auditoria);
     }
 }
