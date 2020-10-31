@@ -1,15 +1,17 @@
 package domain;
 
+import java.math.BigDecimal;
+
 public class Auditoria {
     private String cuenta;
     private String descripcion;
     private String entidad;
     private String act;
-    private long saldoApertura;
-    private long saldoInicial;
-    private long debito;
-    private long credito;
-    private long saldoFinal;
+    private BigDecimal saldoApertura;
+    private BigDecimal saldoInicial;
+    private BigDecimal debito;
+    private BigDecimal credito;
+    private BigDecimal saldoFinal;
 
     public String getCuenta() {
         return cuenta;
@@ -43,43 +45,58 @@ public class Auditoria {
         this.act = act;
     }
 
-    public long getSaldoApertura() {
+    public BigDecimal getSaldoApertura() {
         return saldoApertura;
     }
 
-    public void setSaldoApertura(long saldoApertura) {
+    public void setSaldoApertura(BigDecimal saldoApertura) {
         this.saldoApertura = saldoApertura;
     }
 
-    public long getSaldoInicial() {
+    public BigDecimal getSaldoInicial() {
         return saldoInicial;
     }
 
-    public void setSaldoInicial(long saldoInicial) {
+    public void setSaldoInicial(BigDecimal saldoInicial) {
         this.saldoInicial = saldoInicial;
     }
 
-    public long getDebito() {
+    public BigDecimal getDebito() {
         return debito;
     }
 
-    public void setDebito(long debito) {
+    public void setDebito(BigDecimal debito) {
         this.debito = debito;
     }
 
-    public long getCredito() {
+    public BigDecimal getCredito() {
         return credito;
     }
 
-    public void setCredito(long credito) {
+    public void setCredito(BigDecimal credito) {
         this.credito = credito;
     }
 
-    public long getSaldoFinal() {
+    public BigDecimal getSaldoFinal() {
         return saldoFinal;
     }
 
-    public void setSaldoFinal(long saldoFinal) {
+    public void setSaldoFinal(BigDecimal saldoFinal) {
         this.saldoFinal = saldoFinal;
+    }
+
+    @Override
+    public String toString() {
+        return "Auditoria{" +
+                "cuenta='" + cuenta + '\'' +
+                ", descripcion='" + descripcion + '\'' +
+                ", entidad='" + entidad + '\'' +
+                ", act='" + act + '\'' +
+                ", saldoApertura=" + saldoApertura +
+                ", saldoInicial=" + saldoInicial +
+                ", debito=" + debito +
+                ", credito=" + credito +
+                ", saldoFinal=" + saldoFinal +
+                '}';
     }
 }
