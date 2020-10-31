@@ -9,13 +9,18 @@ public class Main {
     public static void main(String[] args) {
         // Receive a TXT
         try {
-            File auditTxt = new File("/home/aleph02/Documents/audit.txt");
-            Scanner myReader = new Scanner(auditTxt);
-            while (myReader.hasNextLine()) {
-                String data = myReader.nextLine();
-                System.out.println(data);
+            final JFileChooser fileChooser = new JFileChooser();
+            int returnVal = fileChooser.showOpenDialog(null);
+
+            if (returnVal == JFileChooser.APPROVE_OPTION){
+                File auditTxt = fileChooser.getSelectedFile();
+                Scanner myReader = new Scanner(auditTxt);
+                while (myReader.hasNextLine()) {
+                    String data = myReader.nextLine();
+                    System.out.println(data);
+                }
+                myReader.close();
             }
-            myReader.close();
         } catch (FileNotFoundException e) {
             JOptionPane.showMessageDialog(null, e.getMessage());
         }
