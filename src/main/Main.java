@@ -1,6 +1,8 @@
 package main;
 
 import javax.swing.*;
+import javax.swing.filechooser.FileFilter;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
@@ -9,7 +11,11 @@ public class Main {
     public static void main(String[] args) {
         // Receive a TXT
         try {
-            final JFileChooser fileChooser = new JFileChooser();
+            JFileChooser fileChooser = new JFileChooser();
+            FileFilter txtFilter = new FileNameExtensionFilter("Plain Text Files", "txt");
+            fileChooser.setAcceptAllFileFilterUsed(false);
+            fileChooser.setFileFilter(txtFilter);
+
             int returnVal = fileChooser.showOpenDialog(null);
 
             if (returnVal == JFileChooser.APPROVE_OPTION){
