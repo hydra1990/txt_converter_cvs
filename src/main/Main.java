@@ -7,8 +7,8 @@ import javax.swing.filechooser.FileFilter;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.math.BigDecimal;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
@@ -52,8 +52,18 @@ public class Main {
 
     // Convert to Auditoria
     private static void transformAuditoria(String cuenta) {
-        String[] information = cuenta.split("\",\"");
-        System.out.println(Arrays.toString(information));
+        String[] information = cuenta.split("(^\"|\",\"|,)");
+        Auditoria auditoria = new Auditoria();
+        auditoria.setCuenta(information[1]);
+        auditoria.setDescripcion(information[2]);
+        auditoria.setEntidad(information[3]);
+        auditoria.setAct(information[4]);
+        auditoria.setSaldoApertura(new BigDecimal(information[5]));
+        auditoria.setSaldoInicial(new BigDecimal(information[6]));
+        auditoria.setDebito(new BigDecimal(information[7]));
+        auditoria.setCredito(new BigDecimal(information[8]));
+        auditoria.setSaldoFinal(new BigDecimal(information[9]));
+
     }
 
     // Return a CSV
