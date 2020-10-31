@@ -69,8 +69,10 @@ public class Converter {
     }
 
     private void exportToCsv() {
+        String[] auditRoute = auditTxt.getAbsolutePath().split("\\.");
+        String route = auditRoute[0];
         try {
-            try (BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(auditTxt.getAbsolutePath() + "audit.csv"), StandardCharsets.UTF_8))) {
+            try (BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(route + ".csv"), StandardCharsets.UTF_8))) {
                 for (Auditoria auditoria : auditorias) {
                     String oneLine = auditoria.getCuenta() +
                             CSV_SEPARATOR +
