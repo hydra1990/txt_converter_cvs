@@ -73,6 +73,9 @@ public class Converter {
         String route = auditRoute[0];
         try {
             try (BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(route + ".csv"), StandardCharsets.UTF_8))) {
+                String header = "Cuenta,Descripcion,Entidad,Act,Saldo Apertura,Saldo Inicial,Debito,Credito,Saldo Final";
+                bufferedWriter.write(header);
+                bufferedWriter.newLine();
                 for (Auditoria auditoria : auditorias) {
                     String oneLine = auditoria.getCuenta() +
                             CSV_SEPARATOR +
@@ -96,6 +99,7 @@ public class Converter {
                 }
                 bufferedWriter.flush();
             }
+            JOptionPane.showMessageDialog(null, "CSV generado en " + route + ".csv");
         } catch (IOException e) {
             JOptionPane.showMessageDialog(null, e.getMessage());
         }
