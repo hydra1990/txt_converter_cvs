@@ -7,14 +7,12 @@ import javax.swing.filechooser.FileFilter;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import java.io.*;
 import java.math.BigDecimal;
-import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
 public class Converter {
-    private static final String CSV_SEPARATOR = ",";
     List<Auditoria> auditorias = new ArrayList<>();
     File auditTxt;
 
@@ -94,38 +92,5 @@ public class Converter {
 
         writer.flush();
         writer.close();
-
-//        try {
-//            try (BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(route + ".csv"), StandardCharsets.UTF_8))) {
-//                String header = "Cuenta,Descripcion,Entidad,Act,Saldo Apertura,Saldo Inicial,Debito,Credito,Saldo Final";
-//                bufferedWriter.write(header);
-//                bufferedWriter.newLine();
-//                for (Auditoria auditoria : auditorias) {
-//                    String oneLine = auditoria.getCuenta() +
-//                            CSV_SEPARATOR +
-//                            auditoria.getDescripcion() +
-//                            CSV_SEPARATOR +
-//                            auditoria.getEntidad() +
-//                            CSV_SEPARATOR +
-//                            auditoria.getAct() +
-//                            CSV_SEPARATOR +
-//                            auditoria.getSaldoApertura() +
-//                            CSV_SEPARATOR +
-//                            auditoria.getSaldoInicial() +
-//                            CSV_SEPARATOR +
-//                            auditoria.getDebito() +
-//                            CSV_SEPARATOR +
-//                            auditoria.getCredito() +
-//                            CSV_SEPARATOR +
-//                            auditoria.getSaldoFinal();
-//                    bufferedWriter.write(oneLine);
-//                    bufferedWriter.newLine();
-//                }
-//                bufferedWriter.flush();
-//            }
-//            JOptionPane.showMessageDialog(null, "CSV generado en " + route + ".csv");
-//        } catch (IOException e) {
-//            JOptionPane.showMessageDialog(null, e.getMessage());
-//        }
     }
 }
