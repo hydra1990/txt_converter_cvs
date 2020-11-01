@@ -92,5 +92,7 @@ public class Converter {
 
         writer.flush();
         writer.close();
+
+        JOptionPane.showMessageDialog(null, "CSV generado en " + route + ".csv");
     }
 }
